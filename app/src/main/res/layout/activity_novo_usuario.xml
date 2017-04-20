@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.amacedo.com.fitapp.NovoUsuario">
+
+    <EditText
+        android:id="@+id/sobrenomeEdtTxt"
+        android:layout_width="383dp"
+        android:layout_height="84dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/nomeEdtTxt"
+        android:contentDescription="@string/user_sobrenome"
+        android:ems="10"
+        android:hint="@string/user_sobrenome"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="41dp"
+        tools:text="@string/user_sobrenome" />
+
+    <EditText
+        android:id="@+id/nomeEdtTxt"
+        android:layout_width="489dp"
+        android:layout_height="92dp"
+        android:layout_alignParentStart="true"
+        android:contentDescription="@string/user_nome"
+        android:ems="10"
+        android:hint="@string/user_nome"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="-104dp"
+        tools:layout_editor_absoluteY="137dp"
+        tools:text="@string/user_nome" />
+
+    <EditText
+        android:id="@+id/idadeEdtTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sobrenomeEdtTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/user_idade"
+        android:ems="10"
+        android:hint="@string/user_idade"
+        android:inputType="number"
+        tools:text="@string/user_idade" />
+
+    <EditText
+        android:id="@+id/pesoEdtTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/idadeEdtTxt"
+        android:layout_below="@+id/idadeEdtTxt"
+        android:layout_marginTop="11dp"
+        android:contentDescription="@string/user_peso"
+        android:ems="10"
+        android:hint="@string/user_peso"
+        android:inputType="number"
+        tools:text="@string/user_peso" />
+
+    <EditText
+        android:id="@+id/alturaEdtTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/pesoEdtTxt"
+        android:layout_below="@+id/pesoEdtTxt"
+        android:contentDescription="@string/user_altura"
+        android:ems="10"
+        android:hint="@string/user_altura"
+        android:inputType="numberDecimal"
+        tools:text="@string/user_altura" />
+
+    <Button
+        android:id="@+id/cadastrarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/user_cadastrar"
+        android:text="@string/user_cadastrar"
+        android:layout_below="@+id/alturaEdtTxt"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
