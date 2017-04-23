@@ -8,12 +8,23 @@ import java.util.List;
 
 public class Usuario
 {
+    private int id;
     private String nome;
     private String sobreNome;
     private int idade;
     private int peso;
     private float altura;
-    private List<Dieta> dieta;
+    private Dieta dieta;
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -55,11 +66,5 @@ public class Usuario
         this.altura = altura;
     }
 
-    public List<Dieta> getDieta() {
-        return dieta;
-    }
 
-    public void setDieta(List<Dieta> dieta) {
-        this.dieta = dieta;
-    }
 }

@@ -14,17 +14,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.amacedo.com.fitapp.db.UsuarioDAO;
 import br.amacedo.com.fitapp.models.Usuario;
 
 public class InicioActivity extends AppCompatActivity {
 
-    public static List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+    public static List<Usuario> listaUsuarios = new ArrayList<>();
 
 
-    public static void addUser(Usuario usuario)
-    {
-        listaUsuarios.add(usuario);
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +39,13 @@ public class InicioActivity extends AppCompatActivity {
         return true;
     }
 
+
+
     @Override
     protected void onResume()
     {
+        listaUsuarios = new UsuarioDAO(getApplicationContext()).listar();
+
         if(!listaUsuarios.isEmpty())
         {
             Usuario usuario = listaUsuarios.get(0);

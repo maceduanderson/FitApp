@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.amacedo.com.fitapp.db.UsuarioDAO;
 import br.amacedo.com.fitapp.models.Usuario;
 
 public class NovoUsuario extends AppCompatActivity {
@@ -57,7 +58,8 @@ public class NovoUsuario extends AppCompatActivity {
         usuario.setAltura( Float.valueOf(extractStr(altura)));
         usuario.setIdade( Integer.valueOf(extractStr(idade)));
 
-        InicioActivity.addUser(usuario);
+        UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
+        usuarioDAO.inserir(usuario);
 
         finish();
 
