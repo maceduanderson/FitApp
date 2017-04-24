@@ -20,8 +20,9 @@ import br.amacedo.com.fitapp.models.Usuario;
 public class InicioActivity extends AppCompatActivity {
 
     public static List<Usuario> listaUsuarios = new ArrayList<>();
+    public static Usuario currentUsuario;
 
-
+    static final int RESULT_USER_ID = 1;
 
 
     @Override
@@ -35,6 +36,13 @@ public class InicioActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        if(!listaUsuarios.isEmpty())
+        {
+            for (Usuario usuario : listaUsuarios)
+            {
+                menu.add(0, usuario.getId(), 0, usuario.getNome());
+            }
+        }
         getMenuInflater().inflate(R.menu.menu_inicio, menu);
         return true;
     }
@@ -48,12 +56,13 @@ public class InicioActivity extends AppCompatActivity {
 
         if(!listaUsuarios.isEmpty())
         {
-            Usuario usuario = listaUsuarios.get(0);
             TextView txtvw =(TextView) findViewById(R.id.tmpTxtVw);
+            if(currentUsuario != null) {
+                txtvw.setText("Bem vindo \n " +
+                        currentUsuario.getNome() + " " +
+                        currentUsuario.getSobreNome());
+            }
 
-            txtvw.setText("Bem vindo \n " +
-                           usuario.getNome() + " " +
-                           usuario.getSobreNome());
         }
         super.onResume();
     }
@@ -69,10 +78,46 @@ public class InicioActivity extends AppCompatActivity {
         if (id == R.id.novo_usuario)
         {
             Intent intent = new Intent(this, NovoUsuario.class);
-            startActivity(intent);
+            startActivityForResult(intent, RESULT_USER_ID);
             return true;
+        }else
+        {
+            updateUsuario(id);
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+       if(requestCode == RESULT_USER_ID)
+       {
+           if(resultCode == RESULT_OK)
+           {
+                listaUsuarios = new UsuarioDAO(getApplicationContext()).listar();
+                updateUsuario(data.getIntExtra("usuario_id", 0));
+
+           }
+       }
+
+    }
+
+    private void updateUsuario(int id)
+    {
+        if(!listaUsuarios.isEmpty())
+        {
+            for (Usuario usuario : listaUsuarios) {
+                if (usuario.getId() == id) {
+                    currentUsuario = usuario;
+                    break;
+                }
+            }
+            this.onResume();
+
+        }
+
+    }
+
+
 }

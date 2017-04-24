@@ -1,5 +1,6 @@
 package br.amacedo.com.fitapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -60,6 +61,10 @@ public class NovoUsuario extends AppCompatActivity {
 
         UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
         usuarioDAO.inserir(usuario);
+
+        Intent intent = new Intent();
+        intent.putExtra("usuario_id", usuario.getId());
+        setResult(InicioActivity.RESULT_USER_ID, intent);
 
         finish();
 

@@ -13,10 +13,10 @@ import br.amacedo.com.fitapp.models.Usuario;
  * Created by MACEDO on 22/04/2017.
  */
 
-public class UsuarioDAO
+public class UsuarioDAO extends GenericDAO
 {
     static final String NOME_TABELA = "usuarios";
-    static final String COLUNA_ID = "id";
+    static final String COLUNA_ID = "usuario_id";
     static final String COLUNA_NOME = "nome";
     static final String COLUNA_SOBRENOME = "sobrenome";
     static final String COLUNA_IDADE = "idade";
@@ -24,21 +24,10 @@ public class UsuarioDAO
     static final String COLUNA_ALTURA = "altura";
 
 
-    private DBHelper dbhelper;
-    private SQLiteDatabase db;
 
     public UsuarioDAO(Context context)
     {
-        dbhelper = new DBHelper(context);
-    }
-
-    public SQLiteDatabase getDB()
-    {
-        if(db == null)
-        {
-            db = dbhelper.getWritableDatabase();
-        }
-        return db;
+        super(context);
     }
 
     public long inserir(Usuario usuario)

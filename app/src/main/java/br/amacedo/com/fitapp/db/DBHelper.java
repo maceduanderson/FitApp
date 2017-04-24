@@ -29,10 +29,26 @@ public class DBHelper extends SQLiteOpenHelper
                 UsuarioDAO.COLUNA_PESO + " integer not null, " +
                 UsuarioDAO.COLUNA_IDADE + " integer not null);" );
 
+        db.execSQL("Create table " + DietaDAO.NOME_TABELA + " (" +
+                DietaDAO.COLUNA_ID + " integer primary key autoincrement," +
+                DietaDAO.COLUNA_DATUAL + " integer not null, " +
+                DietaDAO.COLUNA_DINICIO + " integer not null, " +
+                DietaDAO.COLUNA_DFIM + " integer not null, " +
+                DietaDAO.COLUNA_PATUAL + " integer not null, " +
+                DietaDAO.COLUNA_PINICIO + " integer not null, " +
+                DietaDAO.COLUNA_PFIM + " integer not null, " +
+                DietaDAO.COLUNA_FIDUSUARIO + " integer not null, "+
+                "foreign key (" + DietaDAO.COLUNA_FIDUSUARIO + ") " +
+                "references "+ UsuarioDAO.NOME_TABELA +
+                "(" + UsuarioDAO.COLUNA_ID + ") " +  ");"
+
+
+        );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS TABLE_NAME");
+        onCreate(db);
     }
 }
