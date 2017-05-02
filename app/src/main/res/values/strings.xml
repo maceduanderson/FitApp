@@ -7,5 +7,9 @@
     <string name="user_altura">Altura</string>
     <string name="user_peso">Peso</string>
     <string name="user_cadastrar">Cadastrar</string>
-
+    <string name="nova_dieta">Nova Dieta</string>
+    <string-array name="dieta_meta">
+        <item name="dieta_ganhar_peso">Ganhar Massa Muscular</item>
+        <item name="dieta_perder_peso">Perder Gordura Corporal</item>
+    </string-array>
 </resources>

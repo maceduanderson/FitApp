@@ -60,7 +60,7 @@ public class NovoUsuario extends AppCompatActivity {
         usuario.setIdade( Integer.valueOf(extractStr(idade)));
 
         UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
-        usuarioDAO.inserir(usuario);
+        usuario.setId((int)usuarioDAO.inserir(usuario));
 
         Intent intent = new Intent();
         intent.putExtra("usuario_id", usuario.getId());

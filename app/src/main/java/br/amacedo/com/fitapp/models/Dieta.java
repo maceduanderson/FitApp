@@ -11,12 +11,18 @@ public class Dieta
 {
     private Date inicio;
     private Date fim;
-    private Date atual;
     private int pesoInicio;
     private int pesoDesejado;
-    private int pesoAtual;
     private List<Refeicao> refeicoes;
-    protected static String META[] ={"Ganhar Peso", "Perder Peso", "Ganhar Massa Muscular", "Perder Massa Muscular"};
+    private String Meta;
+
+    public String getMeta() {
+        return Meta;
+    }
+
+    public void setMeta(String meta) {
+        Meta = meta;
+    }
 
     public Date getInicio() {
         return inicio;
@@ -32,14 +38,6 @@ public class Dieta
 
     public void setFim(Date fim) {
         this.fim = fim;
-    }
-
-    public Date getAtual() {
-        return atual;
-    }
-
-    public void setAtual(Date atual) {
-        this.atual = atual;
     }
 
     public int getPesoInicio() {
@@ -58,14 +56,6 @@ public class Dieta
         this.pesoDesejado = pesoDesejado;
     }
 
-    public int getPesoAtual() {
-        return pesoAtual;
-    }
-
-    public void setPesoAtual(int pesoAtual) {
-        this.pesoAtual = pesoAtual;
-    }
-
     public List<Refeicao> getRefeicoes() {
         return refeicoes;
     }
@@ -74,11 +64,5 @@ public class Dieta
         this.refeicoes = refeicoes;
     }
 
-    public static String[] getMETA() {
-        return META;
-    }
 
-    public static void setMETA(String[] META) {
-        Dieta.META = META;
-    }
 }

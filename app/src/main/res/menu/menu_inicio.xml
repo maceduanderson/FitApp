@@ -6,4 +6,13 @@
         android:title="@string/novo_usuario"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/nova_dieta"
+        android:orderInCategory="101"
+        android:title="@string/nova_dieta" />
+    <group
+        android:id="@+id/user_menu"
+        android:enabled="true"
+        android:orderInCategory="101"
+        android:visible="false" />
 </menu>

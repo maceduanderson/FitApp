@@ -66,5 +66,13 @@ public class Usuario
         this.altura = altura;
     }
 
+    public float getIMC()
+    {
+        return (float)this.peso/(this.altura * this.altura);
+    }
 
+    @Override
+    public String toString() {
+        return this.nome + " " + this.getSobreNome();
+    }
 }

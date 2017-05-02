@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.amacedo.com.fitapp.db.DBHelper;
 import br.amacedo.com.fitapp.db.UsuarioDAO;
 import br.amacedo.com.fitapp.models.Usuario;
 
@@ -23,6 +25,8 @@ public class InicioActivity extends AppCompatActivity {
     public static Usuario currentUsuario;
 
     static final int RESULT_USER_ID = 1;
+    static final int RESULT_DIETA_ID = 2;
+
 
 
     @Override
@@ -31,18 +35,39 @@ public class InicioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        menu.setGroupVisible(101, false);
+        if(!listaUsuarios.isEmpty())
+        {
+
+            for (Usuario usuario : listaUsuarios)
+            {
+                menu.add(0, usuario.getId(), 0, usuario.getNome());
+            }
+            menu.setGroupVisible(101, true);
+        }
+        getMenuInflater().inflate(R.menu.menu_inicio, menu);
+        return true;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        menu.setGroupVisible(101, false);
         if(!listaUsuarios.isEmpty())
         {
             for (Usuario usuario : listaUsuarios)
             {
                 menu.add(0, usuario.getId(), 0, usuario.getNome());
             }
+            menu.setGroupVisible(101, true);
         }
+
         getMenuInflater().inflate(R.menu.menu_inicio, menu);
         return true;
     }
@@ -56,11 +81,22 @@ public class InicioActivity extends AppCompatActivity {
 
         if(!listaUsuarios.isEmpty())
         {
-            TextView txtvw =(TextView) findViewById(R.id.tmpTxtVw);
+            TextView txtvw =(TextView) findViewById(R.id.txtvwWlcm);
+            TextView txtvwIdade = (TextView) findViewById(R.id.txtvwIdade);
+            TextView txtvwPeso = (TextView) findViewById(R.id.txtvwPeso);
+            TextView txtvwAltura = (TextView) findViewById(R.id.txtvwAltura);
+            TextView txtvwIMC = (TextView) findViewById(R.id.txtvwIMC);
             if(currentUsuario != null) {
-                txtvw.setText("Bem vindo \n " +
-                        currentUsuario.getNome() + " " +
-                        currentUsuario.getSobreNome());
+                txtvw.setText("Bem vindo \n " + currentUsuario);
+                txtvwIdade.setText("Idade : \n" + currentUsuario.getIdade());
+                txtvwPeso.setText("Peso : \n" + currentUsuario.getPeso());
+                txtvwAltura.setText("Altura : \n" + currentUsuario.getAltura());
+                txtvwIMC.setText("IMC : \n" + currentUsuario.getIMC());
+
+                txtvwAltura.setVisibility(View.VISIBLE);
+                txtvwIdade.setVisibility(View.VISIBLE);
+                txtvwPeso.setVisibility(View.VISIBLE);
+                txtvwIMC.setVisibility(View.VISIBLE);
             }
 
         }
@@ -74,15 +110,21 @@ public class InicioActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.novo_usuario)
-        {
-            Intent intent = new Intent(this, NovoUsuario.class);
-            startActivityForResult(intent, RESULT_USER_ID);
-            return true;
-        }else
-        {
-            updateUsuario(id);
+        //noinspection SimplifiableIfStatements
+        switch (id){
+            case R.id.novo_usuario:
+
+                Intent intentNovoUsuario = new Intent(this, NovoUsuario.class);
+                startActivityForResult(intentNovoUsuario, RESULT_USER_ID);
+                return true;
+            case R.id.nova_dieta:
+                Intent intentNovaDieta = new Intent(this, NovaDieta.class);
+                intentNovaDieta.putExtra("usuario_id", currentUsuario.getId());
+                startActivityForResult(intentNovaDieta, RESULT_USER_ID);
+                return true;
+            default:
+                updateUsuario(id);
+                break;
         }
 
         return super.onOptionsItemSelected(item);

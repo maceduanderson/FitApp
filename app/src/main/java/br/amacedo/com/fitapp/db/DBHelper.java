@@ -31,10 +31,8 @@ public class DBHelper extends SQLiteOpenHelper
 
         db.execSQL("Create table " + DietaDAO.NOME_TABELA + " (" +
                 DietaDAO.COLUNA_ID + " integer primary key autoincrement," +
-                DietaDAO.COLUNA_DATUAL + " integer not null, " +
                 DietaDAO.COLUNA_DINICIO + " integer not null, " +
                 DietaDAO.COLUNA_DFIM + " integer not null, " +
-                DietaDAO.COLUNA_PATUAL + " integer not null, " +
                 DietaDAO.COLUNA_PINICIO + " integer not null, " +
                 DietaDAO.COLUNA_PFIM + " integer not null, " +
                 DietaDAO.COLUNA_FIDUSUARIO + " integer not null, "+

@@ -15,13 +15,13 @@ import br.amacedo.com.fitapp.models.Usuario;
 
 public class UsuarioDAO extends GenericDAO
 {
-    static final String NOME_TABELA = "usuarios";
-    static final String COLUNA_ID = "usuario_id";
-    static final String COLUNA_NOME = "nome";
-    static final String COLUNA_SOBRENOME = "sobrenome";
-    static final String COLUNA_IDADE = "idade";
-    static final String COLUNA_PESO = "peso";
-    static final String COLUNA_ALTURA = "altura";
+    public static final String NOME_TABELA = "usuarios";
+    public static final String COLUNA_ID = "usuario_id";
+    public static final String COLUNA_NOME = "nome";
+    public static final String COLUNA_SOBRENOME = "sobrenome";
+    public static final String COLUNA_IDADE = "idade";
+    public static final String COLUNA_PESO = "peso";
+    public static final String COLUNA_ALTURA = "altura";
 
 
 
@@ -38,7 +38,7 @@ public class UsuarioDAO extends GenericDAO
         values.put(COLUNA_IDADE, usuario.getIdade());
         values.put(COLUNA_ALTURA, usuario.getAltura());
         values.put(COLUNA_PESO, usuario.getPeso());
-        values.put(COLUNA_ID, usuario.getId());
+        //values.put(COLUNA_ID, usuario.getId());
 
         return getDB().insert(NOME_TABELA,  null, values);
     }

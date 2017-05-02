@@ -8,8 +8,9 @@ import android.widget.Toast;
  * Created by Anderson Macedo on 20/04/2017.
  */
 
-public class Utils extends Activity
+public class Utils
 {
+
 
 
 
