@@ -17,4 +17,5 @@
     <string name="title_activity_nova_refeicao">NovaRefeicao</string>
     <string name="nova_refeicao">Nova Refeicao</string>
     <string name="ver_refs">Ver Refeições</string>
+    <string name="title_activity_http_alimento">HttpAlimento</string>
 </resources>

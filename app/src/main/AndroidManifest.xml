@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.amacedo.com.fitapp">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,13 +22,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".NovoUsuario" />
-        <activity android:name=".NovaDieta" />
         <activity
             android:name=".NovaRefeicao"
             android:label="@string/title_activity_nova_refeicao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RefeicaoActivity" />
-        <activity android:name=".RefeicaoEdit"></activity>
+        <activity android:name=".RefeicaoEdit" />
+        <activity
+            android:name=".AlimentoActivity"
+            android:label="@string/title_activity_http_alimento"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>
