@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
 /**
  * Created by MACEDO on 23/04/2017.
  */
@@ -29,19 +31,28 @@ public class DBHelper extends SQLiteOpenHelper
                 UsuarioDAO.COLUNA_PESO + " integer not null, " +
                 UsuarioDAO.COLUNA_IDADE + " integer not null);" );
 
-        db.execSQL("Create table " + DietaDAO.NOME_TABELA + " (" +
-                DietaDAO.COLUNA_ID + " integer primary key autoincrement," +
-                DietaDAO.COLUNA_DINICIO + " integer not null, " +
-                DietaDAO.COLUNA_DFIM + " integer not null, " +
-                DietaDAO.COLUNA_PINICIO + " integer not null, " +
-                DietaDAO.COLUNA_PFIM + " integer not null, " +
-                DietaDAO.COLUNA_FIDUSUARIO + " integer not null, "+
-                "foreign key (" + DietaDAO.COLUNA_FIDUSUARIO + ") " +
-                "references "+ UsuarioDAO.NOME_TABELA +
-                "(" + UsuarioDAO.COLUNA_ID + ") " +  ");"
+//        db.execSQL("Create table " + DietaDAO.NOME_TABELA + " (" +
+//                DietaDAO.COLUNA_ID + " integer primary key autoincrement," +
+//                DietaDAO.COLUNA_DINICIO + " integer not null, " +
+//                DietaDAO.COLUNA_DFIM + " integer not null, " +
+//                DietaDAO.COLUNA_PINICIO + " integer not null, " +
+//                DietaDAO.COLUNA_PFIM + " integer not null, " +
+//                DietaDAO.COLUNA_FIDUSUARIO + " integer not null, "+
+//                "foreign key (" + DietaDAO.COLUNA_FIDUSUARIO + ") " +
+//                "references "+ UsuarioDAO.NOME_TABELA +
+//                "(" + UsuarioDAO.COLUNA_ID + ") " +  ");"
+
+        db.execSQL("Create table " + RefeicaoDAO.NOME_TABELA + " (" +
+                    RefeicaoDAO.COLUNA_ID + " integer primary key autoincrement," +
+                    RefeicaoDAO.TIPO_REFEICAO + " text not null, "+
+                    RefeicaoDAO.DATA_REFEICAO + " text not null, "+
+                    UsuarioDAO.COLUNA_ID + " integer not null, " +
+                    "foreign key (" + UsuarioDAO.COLUNA_ID + ") "+
+                    "references "+ UsuarioDAO.NOME_TABELA +
+                    "("+ UsuarioDAO.COLUNA_ID + ") " + ");" );
 
 
-        );
+
     }
 
     @Override

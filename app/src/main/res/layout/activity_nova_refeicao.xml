@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context="br.amacedo.com.fitapp.NovaRefeicao">
+
+    <EditText
+        android:id="@+id/edttxtdateRef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Data Refeicao"
+        android:focusable="false"
+        android:inputType="date" />
+
+
+    <Spinner
+        android:id="@+id/spnTipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/refeicao_tipo"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/edttxtdateRef"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btnRefeicaoSave"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:text="Salvar"
+        tools:text="Salvar"
+        android:layout_below="@+id/spnTipo"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

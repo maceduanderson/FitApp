@@ -8,8 +8,13 @@
     <string name="user_peso">Peso</string>
     <string name="user_cadastrar">Cadastrar</string>
     <string name="nova_dieta">Nova Dieta</string>
-    <string-array name="dieta_meta">
-        <item name="dieta_ganhar_peso">Ganhar Massa Muscular</item>
-        <item name="dieta_perder_peso">Perder Gordura Corporal</item>
+    <string-array name="refeicao_tipo">
+        <item name="cafe_manha">Café da Manhã</item>
+        <item name="almoco">Almoco</item>
+        <item name="jantar">Jantar</item>
+        <item name="outros">Outros</item>
     </string-array>
+    <string name="title_activity_nova_refeicao">NovaRefeicao</string>
+    <string name="nova_refeicao">Nova Refeicao</string>
+    <string name="ver_refs">Ver Refeições</string>
 </resources>

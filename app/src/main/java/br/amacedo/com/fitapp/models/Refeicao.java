@@ -1,7 +1,10 @@
 package br.amacedo.com.fitapp.models;
 
+import android.icu.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Anderson Macedo on 20/04/2017.
@@ -9,6 +12,7 @@ import java.util.List;
 
 public class Refeicao
 {
+    private int id;
     private Date dataHora;
     private String tipo;
     private List<Alimento> alimentos;
@@ -33,7 +37,23 @@ public class Refeicao
         return alimentos;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setAlimentos(List<Alimento> alimentos) {
         this.alimentos = alimentos;
+    }
+
+    @Override
+    public String toString() {
+        String format = "dd/MM/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.US);
+
+        return tipo + " de (" + sdf.format(this.dataHora) + ")";
     }
 }

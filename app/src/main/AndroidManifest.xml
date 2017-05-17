@@ -20,7 +20,12 @@
         </activity>
         <activity android:name=".NovoUsuario" />
         <activity android:name=".NovaDieta" />
-        <activity android:name=".DietaActivity"></activity>
+        <activity
+            android:name=".NovaRefeicao"
+            android:label="@string/title_activity_nova_refeicao"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RefeicaoActivity" />
+        <activity android:name=".RefeicaoEdit"></activity>
     </application>
 
 </manifest>

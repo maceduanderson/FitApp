@@ -14,7 +14,7 @@ public class Usuario
     private int idade;
     private int peso;
     private float altura;
-    private Dieta dieta;
+    private List<Refeicao> refeicao;
 
     public int getId()
     {
@@ -69,6 +69,14 @@ public class Usuario
     public float getIMC()
     {
         return (float)this.peso/(this.altura * this.altura);
+    }
+
+    public List<Refeicao> getRefeicao() {
+        return refeicao;
+    }
+
+    public void setRefeicao(List<Refeicao> refeicao) {
+        this.refeicao = refeicao;
     }
 
     @Override

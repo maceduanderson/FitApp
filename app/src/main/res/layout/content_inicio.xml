@@ -49,4 +49,27 @@
         android:layout_alignStart="@+id/txtvwPeso"
         android:layout_marginTop="20dp" />
 
+    <Button
+        android:id="@+id/btnNovaRef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtvwWlcm"
+        android:layout_below="@+id/txtvwIMC"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="103dp"
+        android:contentDescription="@string/nova_refeicao"
+        android:text="@string/nova_refeicao"
+        android:visibility="invisible"/>
+
+
+    <Button
+        android:id="@+id/btnVerRefs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnNovaRef"
+        android:layout_toEndOf="@+id/txtvwIMC"
+        android:contentDescription="@string/ver_refs"
+        android:text="@string/ver_refs"
+        android:visibility="invisible"/>
+
 </RelativeLayout>

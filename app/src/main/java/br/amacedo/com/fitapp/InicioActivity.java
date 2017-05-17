@@ -2,20 +2,17 @@ package br.amacedo.com.fitapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.amacedo.com.fitapp.db.DBHelper;
 import br.amacedo.com.fitapp.db.UsuarioDAO;
 import br.amacedo.com.fitapp.models.Usuario;
 
@@ -25,7 +22,6 @@ public class InicioActivity extends AppCompatActivity {
     public static Usuario currentUsuario;
 
     static final int RESULT_USER_ID = 1;
-    static final int RESULT_DIETA_ID = 2;
 
 
 
@@ -41,7 +37,6 @@ public class InicioActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.clear();
-        menu.setGroupVisible(101, false);
         if(!listaUsuarios.isEmpty())
         {
 
@@ -49,7 +44,6 @@ public class InicioActivity extends AppCompatActivity {
             {
                 menu.add(0, usuario.getId(), 0, usuario.getNome());
             }
-            menu.setGroupVisible(101, true);
         }
         getMenuInflater().inflate(R.menu.menu_inicio, menu);
         return true;
@@ -58,16 +52,14 @@ public class InicioActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menu.setGroupVisible(101, false);
         if(!listaUsuarios.isEmpty())
         {
             for (Usuario usuario : listaUsuarios)
             {
                 menu.add(0, usuario.getId(), 0, usuario.getNome());
             }
-            menu.setGroupVisible(101, true);
-        }
 
+        }
         getMenuInflater().inflate(R.menu.menu_inicio, menu);
         return true;
     }
@@ -86,6 +78,9 @@ public class InicioActivity extends AppCompatActivity {
             TextView txtvwPeso = (TextView) findViewById(R.id.txtvwPeso);
             TextView txtvwAltura = (TextView) findViewById(R.id.txtvwAltura);
             TextView txtvwIMC = (TextView) findViewById(R.id.txtvwIMC);
+            Button btnNovaRef = (Button) findViewById(R.id.btnNovaRef);
+            Button btnVerRefs = (Button)findViewById(R.id.btnVerRefs);
+
             if(currentUsuario != null) {
                 txtvw.setText("Bem vindo \n " + currentUsuario);
                 txtvwIdade.setText("Idade : \n" + currentUsuario.getIdade());
@@ -93,6 +88,27 @@ public class InicioActivity extends AppCompatActivity {
                 txtvwAltura.setText("Altura : \n" + currentUsuario.getAltura());
                 txtvwIMC.setText("IMC : \n" + currentUsuario.getIMC());
 
+                btnNovaRef.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view)
+                    {
+                        Intent intent = new Intent(getApplicationContext(), NovaRefeicao.class);
+                        intent.putExtra("usuario_id", currentUsuario.getId());
+                        startActivity(intent);
+                    }
+                });
+
+                btnVerRefs.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view){
+                        Intent intent = new Intent(getApplicationContext(), RefeicaoActivity.class);
+                        intent.putExtra("usuario_id", currentUsuario.getId());
+                        startActivity(intent);
+                    }
+                });
+
+                btnNovaRef.setVisibility(View.VISIBLE);
+                btnVerRefs.setVisibility(View.VISIBLE);
                 txtvwAltura.setVisibility(View.VISIBLE);
                 txtvwIdade.setVisibility(View.VISIBLE);
                 txtvwPeso.setVisibility(View.VISIBLE);
@@ -116,11 +132,6 @@ public class InicioActivity extends AppCompatActivity {
 
                 Intent intentNovoUsuario = new Intent(this, NovoUsuario.class);
                 startActivityForResult(intentNovoUsuario, RESULT_USER_ID);
-                return true;
-            case R.id.nova_dieta:
-                Intent intentNovaDieta = new Intent(this, NovaDieta.class);
-                intentNovaDieta.putExtra("usuario_id", currentUsuario.getId());
-                startActivityForResult(intentNovaDieta, RESULT_USER_ID);
                 return true;
             default:
                 updateUsuario(id);
