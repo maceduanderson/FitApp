@@ -42,4 +42,11 @@ public class Alimento
     public void setCalorias(int calorias) {
         this.calorias = calorias;
     }
+
+    @Override
+    public String toString() {
+        return this.nome + "\n " +
+                "Tipo : " + this.tipo + "\n " +
+                "Calorias : " + String.valueOf(this.calorias);
+    }
 }

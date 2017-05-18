@@ -51,6 +51,15 @@ public class DBHelper extends SQLiteOpenHelper
                     "references "+ UsuarioDAO.NOME_TABELA +
                     "("+ UsuarioDAO.COLUNA_ID + ") " + ");" );
 
+        db.execSQL("Create table " + AlimentoDAO.NOME_TABELA + " (" +
+                AlimentoDAO.COLUNA_ID + " integer primary key autoincrement," +
+                AlimentoDAO.NOME_ALIMENTO + " text not null, "+
+                AlimentoDAO.TIPO_ALIMENTO + " text not null, "+
+                AlimentoDAO.CALORIA_ALIMENTO + " integer not null, " +
+                RefeicaoDAO.COLUNA_ID + " integer not null, " +
+                "foreign key (" + RefeicaoDAO.COLUNA_ID + ") "+
+                "references "+ RefeicaoDAO.NOME_TABELA +
+                "("+ RefeicaoDAO.COLUNA_ID + ") " + ");" );
 
 
     }

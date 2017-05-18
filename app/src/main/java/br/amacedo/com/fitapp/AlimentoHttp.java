@@ -25,6 +25,9 @@ public class AlimentoHttp
 {
     public static final String URLRAND = "https://api.myjson.com/bins/159yxt";
 
+
+    public List<Alimento> alimentos;
+
     private static HttpsURLConnection connect(String endereco) throws IOException
     {
 
@@ -40,25 +43,25 @@ public class AlimentoHttp
         return connection;
     }
 
-    public static List<Alimento> lerAlimentos() throws IOException, JSONException {
+    public  void lerAlimentos() throws IOException, JSONException {
         HttpsURLConnection conexao = connect(URLRAND);
-        List<Alimento> alimentos = null;
+
         int response = conexao.getResponseCode();
 
         if(response == HttpsURLConnection.HTTP_OK)
         {
             InputStream is = conexao.getInputStream();
             JSONObject json = new JSONObject(bytes2String(is));
-            return lerAlimentoJson(json);
+            this.setAlimentos(lerAlimentoJson(json));
         }
-        return alimentos;
+
     }
 
     public static List<Alimento> lerAlimentoJson(JSONObject json) throws JSONException {
         List<Alimento> alimentos = new ArrayList<>();
 
 
-        JSONArray array = json.getJSONArray("Alimentos");
+        JSONArray array = json.getJSONArray("alimento");
 
         for (int i = 0; i < array.length() ; i++)
         {
@@ -67,7 +70,7 @@ public class AlimentoHttp
             Alimento alimento = new Alimento();
             alimento.setNome(jsonAlimento.getString("nome"));
             alimento.setCalorias(jsonAlimento.getInt("calorias"));
-            alimento.setTipo(json.getString("tipo"));
+            alimento.setTipo(jsonAlimento.getString("tipo"));
             alimentos.add(alimento);
         }
 
@@ -88,4 +91,13 @@ public class AlimentoHttp
 
         return new String(out.toByteArray(), "UTF-8");
     }
+
+    public List<Alimento> getAlimentos() {
+        return alimentos;
+    }
+
+    public void setAlimentos(List<Alimento> alimentos) {
+        this.alimentos = alimentos;
+    }
+
 }
