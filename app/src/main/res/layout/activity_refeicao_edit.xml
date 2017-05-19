@@ -28,17 +28,18 @@
         android:id="@+id/btnNovoAlimento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="59dp"
+        android:layout_marginBottom="37dp"
         android:text="Adicionar \nAlimento"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="25dp" />
 
     <TextView
         android:id="@+id/txtvwInfoAlim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtvwTipoRefEdti"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp" />
+        android:layout_marginTop="33dp"
+        android:layout_toEndOf="@+id/txtvwDataRefEdit" />
 
 </RelativeLayout>

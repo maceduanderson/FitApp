@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public class DBHelper extends SQLiteOpenHelper
 {
     protected static final String BD = "FITAPP";
-    protected static final int VERSION = 1;
+    protected static final int VERSION = 2;
 
     public DBHelper(Context context) {
         super(context, BD, null, VERSION);
@@ -66,7 +66,9 @@ public class DBHelper extends SQLiteOpenHelper
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS TABLE_NAME");
+        db.execSQL("DROP TABLE IF EXISTS "+ AlimentoDAO.NOME_TABELA);
+        db.execSQL("DROP TABLE IF EXISTS "+ RefeicaoDAO.NOME_TABELA);
+        db.execSQL("DROP TABLE IF EXISTS "+ UsuarioDAO.NOME_TABELA);
         onCreate(db);
     }
 }

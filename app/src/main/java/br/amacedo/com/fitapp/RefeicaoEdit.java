@@ -12,23 +12,32 @@ import org.w3c.dom.Text;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
+import br.amacedo.com.fitapp.db.AlimentoDAO;
 import br.amacedo.com.fitapp.db.RefeicaoDAO;
+import br.amacedo.com.fitapp.models.Alimento;
 import br.amacedo.com.fitapp.models.Refeicao;
 
 public class RefeicaoEdit extends AppCompatActivity {
 
     TextView txtvwTipo;
     TextView txtvwData;
+    TextView txtvwAlimentoInfo;
     Button btnNovoAlimento;
+    List<Alimento> alimentos;
+    int calorias = 0;
+    int refeicao_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refeicao_edit);
 
-        final int refeicao_id = getIntent().getIntExtra("refeicao_id", 0);
+        refeicao_id = getIntent().getIntExtra("refeicao_id", 0);
         Refeicao refeicao = new Refeicao();
 
         String format = "dd/MM/yy";
@@ -46,6 +55,13 @@ public class RefeicaoEdit extends AppCompatActivity {
         txtvwData.setText(sdf.format(refeicao.getDataHora()));
         txtvwTipo.setText(refeicao.getTipo());
 
+        txtvwAlimentoInfo = (TextView) findViewById(R.id.txtvwInfoAlim);
+        try {
+            updateAlimentosInfo(txtvwAlimentoInfo, refeicao_id);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         btnNovoAlimento = (Button)findViewById(R.id.btnNovoAlimento);
         btnNovoAlimento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,5 +73,39 @@ public class RefeicaoEdit extends AppCompatActivity {
         });
 
 
+    }
+
+    void updateAlimentosInfo(TextView txtvw, int refeicao_id) throws ParseException {
+        int calorias = 0;
+        String aux = "";
+        List<Alimento> alimentos = new ArrayList<Alimento>();
+        AlimentoDAO alimentoDAO = new AlimentoDAO(getApplicationContext());
+
+        alimentos = alimentoDAO.listar(refeicao_id);
+
+        for (Alimento alimento: alimentos)
+        {
+            calorias += alimento.getCalorias();
+            aux = aux + ("Nome : " + alimento.getNome() + "\n" +
+                       "Tipo : " + alimento.getTipo() + "\n" +
+                       "Calorias : " + alimento.getCalorias() + "\n");
+            aux = aux +  android.text.TextUtils.join("", Collections.nCopies(txtvw.getLineHeight(), "-"));
+            aux += "\n";
+        }
+
+        if(calorias > 0)
+        {
+            txtvw.setText("Total de Calorias : " + String.valueOf(calorias) + "\n\n" + aux );
+        }else txtvw.setText(aux);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            updateAlimentosInfo(txtvwAlimentoInfo, refeicao_id);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
