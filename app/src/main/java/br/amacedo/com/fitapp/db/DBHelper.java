@@ -9,16 +9,30 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 /**
  * Created by MACEDO on 23/04/2017.
  */
-
 public class DBHelper extends SQLiteOpenHelper
 {
+    /**
+     * The constant BD.
+     */
     protected static final String BD = "FITAPP";
+    /**
+     * The constant VERSION.
+     */
     protected static final int VERSION = 2;
 
+    /**
+     * Instantiates a new Db helper.
+     *
+     * @param context the context
+     */
     public DBHelper(Context context) {
         super(context, BD, null, VERSION);
     }
 
+    /**
+     * Executa scripts de criação do banco
+     * @param db
+     */
 
     @Override
     public void onCreate(SQLiteDatabase db)
@@ -64,6 +78,12 @@ public class DBHelper extends SQLiteOpenHelper
 
     }
 
+    /**
+     * Deleta tabela se houver alteração na estrutura do projeto
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+ AlimentoDAO.NOME_TABELA);

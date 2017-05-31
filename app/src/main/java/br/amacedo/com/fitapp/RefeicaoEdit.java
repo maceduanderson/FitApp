@@ -22,14 +22,38 @@ import br.amacedo.com.fitapp.db.RefeicaoDAO;
 import br.amacedo.com.fitapp.models.Alimento;
 import br.amacedo.com.fitapp.models.Refeicao;
 
+/**
+ * The type Refeicao edit.
+ */
 public class RefeicaoEdit extends AppCompatActivity {
 
+    /**
+     * The Txtvw tipo.
+     */
     TextView txtvwTipo;
+    /**
+     * The Txtvw data.
+     */
     TextView txtvwData;
+    /**
+     * The Txtvw alimento info.
+     */
     TextView txtvwAlimentoInfo;
+    /**
+     * The Btn novo alimento.
+     */
     Button btnNovoAlimento;
+    /**
+     * The Alimentos.
+     */
     List<Alimento> alimentos;
+    /**
+     * The Calorias.
+     */
     int calorias = 0;
+    /**
+     * The Refeicao id.
+     */
     int refeicao_id = 0;
 
     @Override
@@ -75,6 +99,13 @@ public class RefeicaoEdit extends AppCompatActivity {
 
     }
 
+    /**
+     * Atualiza a tela com os alimentos inseridos
+     *
+     * @param txtvw       the txtvw
+     * @param refeicao_id the refeicao id
+     * @throws ParseException the parse exception
+     */
     void updateAlimentosInfo(TextView txtvw, int refeicao_id) throws ParseException {
         int calorias = 0;
         String aux = "";

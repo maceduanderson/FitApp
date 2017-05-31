@@ -19,22 +19,52 @@ import static br.amacedo.com.fitapp.db.RefeicaoDAO.TIPO_REFEICAO;
 /**
  * Created by AndersonMacedo on 18/05/2017.
  */
-
 public class AlimentoDAO extends GenericDAO
 {
 
+    /**
+     * The constant NOME_TABELA.
+     */
     public static final String NOME_TABELA = "alimento";
+    /**
+     * The constant COLUNA_ID.
+     */
     public static final String COLUNA_ID = "alimento_id";
+    /**
+     * The constant TIPO_ALIMENTO.
+     */
     public static final String TIPO_ALIMENTO = "tipo";
+    /**
+     * The constant NOME_ALIMENTO.
+     */
     public static final String NOME_ALIMENTO = "nome";
+    /**
+     * The constant CALORIA_ALIMENTO.
+     */
     public static final String CALORIA_ALIMENTO = "calorias";
 
+    /**
+     * The Alimentos.
+     */
     ArrayList<Alimento> alimentos = new ArrayList<>();
 
+    /**
+     * Instantiates a new Alimento dao.
+     *
+     * @param context the context
+     */
     public AlimentoDAO(Context context)
     {
         super(context);
     }
+
+    /**
+     * Insere um alimento no banco
+     *
+     * @param alimento   the alimento
+     * @param refeicaoID the refeicao id
+     * @return id long
+     */
     public long inserir(Alimento alimento, int refeicaoID)
     {
         ContentValues values  = new ContentValues();
@@ -48,6 +78,13 @@ public class AlimentoDAO extends GenericDAO
         return getDB().insert(NOME_TABELA,  null, values);
     }
 
+    /**
+     * Lista os alimentos no banco
+     *
+     * @param refeicaoID the refeicao id
+     * @return array list
+     * @throws ParseException the parse exception
+     */
     public ArrayList<Alimento> listar(int refeicaoID) throws ParseException {
         //String[] colums = new String[]{COLUNA_ID, COLUNA_NOME, COLUNA_SOBRENOME, COLUNA_IDADE, COLUNA_ALTURA, COLUNA_PESO};
         String query = "select * from " + NOME_TABELA + " r inner join " + RefeicaoDAO.NOME_TABELA + " u " +
@@ -73,6 +110,13 @@ public class AlimentoDAO extends GenericDAO
         return alimentos;
     }
 
+    /**
+     * Retorna um alimento  do banco ou null
+     *
+     * @param alimentoid the alimentoid
+     * @return Alimento alimento
+     * @throws ParseException the parse exception
+     */
     public Alimento getAlimento(int alimentoid) throws ParseException
     {
         String[] colums = new String[]{COLUNA_ID, NOME_ALIMENTO, CALORIA_ALIMENTO, TIPO_ALIMENTO};

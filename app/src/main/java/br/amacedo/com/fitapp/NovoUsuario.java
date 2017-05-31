@@ -11,6 +11,9 @@ import android.widget.Toast;
 import br.amacedo.com.fitapp.db.UsuarioDAO;
 import br.amacedo.com.fitapp.models.Usuario;
 
+/**
+ * The type Novo usuario.
+ */
 public class NovoUsuario extends AppCompatActivity {
 
     private EditText nome;
@@ -44,6 +47,9 @@ public class NovoUsuario extends AppCompatActivity {
 
     }
 
+    /**
+     * Insere usuario no banco
+     */
     public void Cadastrar()
     {
         Usuario usuario = new Usuario();
@@ -70,6 +76,13 @@ public class NovoUsuario extends AppCompatActivity {
 
 
     }
+
+    /**
+     * Verifica se o EditText foi preenchido, e avisa o usuário da obrigatoriedade
+     *
+     * @param edttxt the edttxt
+     * @return boolean boolean
+     */
     public  boolean checkNullOrEmpty(EditText edttxt)
     {
         if(edttxt.getText().toString().isEmpty())
@@ -81,6 +94,12 @@ public class NovoUsuario extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Extrai a string do EditText
+     *
+     * @param edttxt the edttxt
+     * @return string string
+     */
     public  String extractStr(EditText edttxt)
     {
         return edttxt.getText().toString();

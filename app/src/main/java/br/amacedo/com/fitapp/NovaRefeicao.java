@@ -19,17 +19,41 @@ import java.util.Locale;
 import br.amacedo.com.fitapp.db.RefeicaoDAO;
 import br.amacedo.com.fitapp.models.Refeicao;
 
+/**
+ * The type Nova refeicao.
+ */
 public class NovaRefeicao extends Activity
 {
 
+    /**
+     * The Edttxt date ref.
+     */
     EditText edttxtDateRef;
+    /**
+     * The Tipo.
+     */
     Spinner tipo;
+    /**
+     * The Btn save.
+     */
     Button btnSave;
 
+    /**
+     * The Format.
+     */
     String format = "dd/MM/yy";
+    /**
+     * The Sdf.
+     */
     SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.US);
 
+    /**
+     * The Calendar.
+     */
     final Calendar calendar = Calendar.getInstance();
+    /**
+     * The Date.
+     */
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener()
     {
         @Override
@@ -75,11 +99,21 @@ public class NovaRefeicao extends Activity
 
     }
 
+    /**
+     * Seta uma data devidamente formatada em um EditText
+     *
+     * @param edtTxt the edt txt
+     */
     void updateLabel(EditText edtTxt)
     {
         edtTxt.setText(sdf.format(calendar.getTime()));
     }
 
+    /**
+     * Insere refeição no banco
+     *
+     * @throws ParseException the parse exception
+     */
     void salvar() throws ParseException {
 
         int userid = getIntent().getIntExtra("usuario_id", 0);

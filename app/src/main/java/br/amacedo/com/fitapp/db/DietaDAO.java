@@ -8,25 +8,56 @@ import br.amacedo.com.fitapp.models.Dieta;
 /**
  * Created by Anderson Macedo on 24/04/2017.
  */
-
 public class DietaDAO extends GenericDAO
 {
+    /**
+     * The Nome tabela.
+     */
     static final String NOME_TABELA = "dieta";
+    /**
+     * The Coluna id.
+     */
     static final String COLUNA_ID = "dieta_id";
+    /**
+     * The Coluna dinicio.
+     */
     static final String COLUNA_DINICIO = "data_inicio";
+    /**
+     * The Coluna dfim.
+     */
     static final String COLUNA_DFIM = "data_fim";
+    /**
+     * The Coluna pinicio.
+     */
     static final String COLUNA_PINICIO = "peso_inicio";
+    /**
+     * The Coluna pfim.
+     */
     static final String COLUNA_PFIM = "peso_fim";
+    /**
+     * The Coluna fidusuario.
+     */
     static final String COLUNA_FIDUSUARIO = "usuario_id";
 
 
+    /**
+     * Instantiates a new Dieta dao.
+     *
+     * @param context the context
+     */
     public DietaDAO(Context context)
     {
         super(context);
     }
 
 
-
+    /**
+     * Insere uma dieta no banco
+     *
+     * @param dieta  the dieta
+     * @param userID the user id
+     * @return long long
+     */
     public long inserir(Dieta dieta, int userID)
     {
         ContentValues values = new ContentValues();

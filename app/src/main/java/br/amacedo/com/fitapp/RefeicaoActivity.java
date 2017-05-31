@@ -15,9 +15,15 @@ import java.util.List;
 import br.amacedo.com.fitapp.db.RefeicaoDAO;
 import br.amacedo.com.fitapp.models.Refeicao;
 
+/**
+ * The type Refeicao activity.
+ */
 public class RefeicaoActivity extends Activity
 {
 
+    /**
+     * The Lstvw refs.
+     */
     ListView lstvwRefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -20,14 +20,26 @@ import br.amacedo.com.fitapp.models.Alimento;
 /**
  * Created by AndersonMacedo on 17/05/2017.
  */
-
 public class AlimentoHttp
 {
+    /**
+     * The constant URLRAND.
+     */
     public static final String URLRAND = "https://api.myjson.com/bins/159yxt";
 
 
+    /**
+     * The Alimentos.
+     */
     public List<Alimento> alimentos;
 
+
+    /**
+     * Conecta ao enredeço http selecionado
+     * @param endereco
+     * @return handle da conexao
+     * @throws IOException
+     */
     private static HttpsURLConnection connect(String endereco) throws IOException
     {
 
@@ -43,6 +55,12 @@ public class AlimentoHttp
         return connection;
     }
 
+    /**
+     * Atualiza a activity com os alimentos baixados
+     *
+     * @throws IOException   the io exception
+     * @throws JSONException the json exception
+     */
     public  void lerAlimentos() throws IOException, JSONException {
         HttpsURLConnection conexao = connect(URLRAND);
 
@@ -57,6 +75,13 @@ public class AlimentoHttp
 
     }
 
+    /**
+     * Ler alimento json list.
+     *
+     * @param json the json
+     * @return the list
+     * @throws JSONException the json exception
+     */
     public static List<Alimento> lerAlimentoJson(JSONObject json) throws JSONException {
         List<Alimento> alimentos = new ArrayList<>();
 
@@ -92,10 +117,20 @@ public class AlimentoHttp
         return new String(out.toByteArray(), "UTF-8");
     }
 
+    /**
+     * Gets alimentos.
+     *
+     * @return the alimentos
+     */
     public List<Alimento> getAlimentos() {
         return alimentos;
     }
 
+    /**
+     * Sets alimentos.
+     *
+     * @param alimentos the alimentos
+     */
     public void setAlimentos(List<Alimento> alimentos) {
         this.alimentos = alimentos;
     }

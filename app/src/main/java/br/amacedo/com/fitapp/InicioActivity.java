@@ -16,11 +16,23 @@ import java.util.List;
 import br.amacedo.com.fitapp.db.UsuarioDAO;
 import br.amacedo.com.fitapp.models.Usuario;
 
+/**
+ * The type Inicio activity.
+ */
 public class InicioActivity extends AppCompatActivity {
 
+    /**
+     * The constant listaUsuarios.
+     */
     public static List<Usuario> listaUsuarios = new ArrayList<>();
+    /**
+     * The constant currentUsuario.
+     */
     public static Usuario currentUsuario;
 
+    /**
+     * The Result user id.
+     */
     static final int RESULT_USER_ID = 1;
 
 
@@ -65,7 +77,9 @@ public class InicioActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Atualiza tela inicial com as informações do usuario selecionado
+     */
     @Override
     protected void onResume()
     {
@@ -156,6 +170,10 @@ public class InicioActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Seleciona usuário na lista estática e atualiza a referência do usuario selecionado
+     * @param id
+     */
     private void updateUsuario(int id)
     {
         if(!listaUsuarios.isEmpty())

@@ -20,9 +20,18 @@ import br.amacedo.com.fitapp.db.AlimentoDAO;
 import br.amacedo.com.fitapp.models.Alimento;
 import br.amacedo.com.fitapp.models.Refeicao;
 
+/**
+ * The type Alimento activity.
+ */
 public class AlimentoActivity extends AppCompatActivity {
 
+    /**
+     * The Lstvw alimentos.
+     */
     ListView lstvwAlimentos;
+    /**
+     * The Alimentos.
+     */
     List<Alimento> alimentos;
 
     private int refeicaoID;
@@ -70,6 +79,11 @@ public class AlimentoActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Sets alimentos.
+     *
+     * @param alimentos the alimentos
+     */
     public void setAlimentos(List<Alimento> alimentos) {
         this.alimentos = alimentos;
     }
